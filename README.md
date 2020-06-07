@@ -3,6 +3,10 @@
 ## Introduction 🙋‍♂️ 🙋‍
 This is just for fun project where i tried to figure out, how Jetpack Compose could be used with API similar to React. The code is working so far, but i'm not really planning to go further with this approach.
 
+Screenshots
+-----------
+[<img src="docs/screenshots/home/home_app_v0.1.png" width="200">](docs/codelef.png)
+[<img src="docs/screenshots/files/files_app_v0.1.png" width="200">](docs/coderight.png)
 
 ## Usage
 You need at least Compose 0.1.0-dev12
