@@ -8,25 +8,22 @@ import de.jensklingenberg.composereact.RComponent
 import de.jensklingenberg.composereact.RProps
 import de.jensklingenberg.composereact.RState
 
-class MySecComp : RComponent<RProps, RState>() {
+class SecondComponent : RComponent<RProps, RState>() {
 
     override fun componentDidMount() {
         Log.d("MySecComp", "DidMount")
     }
 
+    @Preview(showBackground = true)
     @Composable
     override fun render() {
-        Text(text = "MySend")
+        Text(text = "SecondComponent")
     }
 
     override fun componentWillUnmount() {
         Log.d("MySecComp", "UnMount")
-
-
     }
 
 }
 
-
-@Preview(showBackground = true)
-@Composable fun secondView() = MySecComp().start()
+@Composable fun secondComponent() = SecondComponent().start()

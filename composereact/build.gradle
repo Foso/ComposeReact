@@ -1,0 +1,151 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+
+        classpath 'digital.wup:android-maven-publish:3.6.2'
+    }
+}
+
+plugins {
+    id 'signing'
+    id 'maven-publish'
+    id 'io.codearte.nexus-staging' version '0.21.2'
+
+}
+
+apply plugin: 'com.android.library'
+
+apply plugin: "kotlin-android"
+apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: "maven"
+apply plugin: 'com.bmuschko.nexus'
+
+
+repositories {
+   // maven { url "$androidx_home/out/ui/build/support_repo/" }
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    google()
+    jcenter()
+}
+
+
+group = "de.jensklingenberg"
+archivesBaseName = "composereact"
+version = "0.1-0.12"
+
+ext {
+    PUBLISH_GROUP_ID = 'de.jensklingenberg'
+    PUBLISH_ARTIFACT_ID = 'composereact'
+    PUBLISH_VERSION_CODE = 1
+    PUBLISH_VERSION_NAME = '0.1-0.12'
+}
+
+android {
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {}
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion "1.3.70-dev-withExperimentalGoogleExtensions-20200424"
+        kotlinCompilerExtensionVersion "0.1.0-dev12"
+
+    }
+
+}
+
+dependencies {
+    def compose_version = "0.1.0-dev12"
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation("androidx.compose:compose-runtime:$compose_version")
+
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test:runner:1.1.1"
+
+}
+
+
+modifyPom {
+    project {
+        name 'ComposeReact'
+        description 'React-like Api for Compose'
+        url 'https://github.com/Foso/ComposeReact'
+        inceptionYear '2020'
+        scm {
+            url 'https://github.com/Foso/ComposeReact'
+            connection 'scm:https://github.com/Foso/ComposeReact.git'
+            developerConnection 'scm:git://github.com/Foso/ComposeReact.git'
+        }
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+        developers {
+            developer {
+                id 'Foso'
+                name 'Jens Klingenberg'
+                email 'mail@jensklingenberg.de'
+            }
+        }
+    }
+}
+extraArchive {
+    sources = true
+    tests = true
+    javadoc = true
+}
+nexus {
+    sign = false//true
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+}
+
+nexusStaging {
+    packageGroup = "de.jensklingenberg" //optional if packageGroup == project.getGroup()
+    stagingProfileId = "d56228753311b0" //when not defined will be got from server using "packageGroup"
+}
+

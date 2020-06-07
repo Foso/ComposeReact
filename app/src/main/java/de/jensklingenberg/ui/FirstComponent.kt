@@ -12,10 +12,10 @@ import de.jensklingenberg.composereact.*
 data class UserState(var name: String): RState
 
 
-class MyComponent : RComponent<RProps, UserState>() {
+class FirstComponent : RComponent<RProps, UserState>() {
 
     override fun initState(): UserState =
-        UserState("Huhu")
+        UserState("Foo")
 
     override fun componentWillMount() {
         Log.d("Hello", "componentWillMount")
@@ -35,15 +35,14 @@ class MyComponent : RComponent<RProps, UserState>() {
         Column {
             Text(text = "Hello React!  " + state.value.name)
             Button(onClick = {
-
                 setState {
-                    it.copy(name = "Ciao")
+                    it.copy(name = "Bar")
                 }
             }) {
-                Text("Hey")
+                Text( state.value.name)
             }
-            if (state.value.name == "Huhu") {
-                secondView()
+            if (state.value.name == "Foo") {
+                secondComponent()
             }
             text(
                 TextProps(
@@ -56,4 +55,4 @@ class MyComponent : RComponent<RProps, UserState>() {
 }
 
 
-@Composable fun myComp() = MyComponent().start()
+@Composable fun myComp() = FirstComponent().start()

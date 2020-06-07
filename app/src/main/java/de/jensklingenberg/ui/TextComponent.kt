@@ -11,7 +11,7 @@ data class TextProps(val text: String=""): RProps
 
 data class TextState(val text:String=""): RState
 
-class TextComponent(props: TextProps = TextProps()) : RComponent<TextProps, TextState>(props){
+class TextComponent(props: TextProps = TextProps()) : RComponent<TextProps, TextState>(props) {
 
     override fun initState(props: TextProps): TextState {
         return TextState(text = props.text)
@@ -24,8 +24,6 @@ class TextComponent(props: TextProps = TextProps()) : RComponent<TextProps, Text
 
     override fun componentWillUnmount() {
         Log.d("TextComponent", "UnMount")
-
-
     }
 
 }
