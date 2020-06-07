@@ -20,7 +20,6 @@ dependencies {
 
 ```kotlin
 class FirstComponent : RComponent<RProps, RState>() {
-
 ```
 
 2) Implement the render() function and add the @Composable annotation
@@ -42,3 +41,37 @@ override fun render() {
    MyOtherComponent().start()
  }
 }
+```
+
+Inside the setContent{} of your Activity/View, you can also use runApp()
+
+```kotlin
+setContent {
+    runApp ( FirstComponent() )
+}
+```
+
+### Define a State
+Create a data class that extends RState
+
+```kotlin
+data class MyState(var name: String): RState
+```
+
+Add the class to your Component
+
+```kotlin
+class FirstComponent : RComponent<RProps, MyState>() {
+```
+
+Override the initState() and initialize your state 
+```kotlin
+override fun initState(): MyState = MyState("Foo")
+```
+
+You can then use state.value to get your state and set your state with setState()-function like this:
+```kotlin
+setState {myState->
+myState.copy(name = "Bar")
+}
+```
