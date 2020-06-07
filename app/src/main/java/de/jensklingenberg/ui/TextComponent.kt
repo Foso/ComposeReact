@@ -14,8 +14,7 @@ data class TextState(val text:String=""): RState
 class TextComponent(props: TextProps = TextProps()) : RComponent<TextProps, TextState>(props) {
 
     override fun initState(props: TextProps): TextState {
-        return TextState(text = props.text)
-    }
+        return TextState(text = props.text) }
 
     @Composable
     override fun render() {

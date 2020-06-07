@@ -9,12 +9,11 @@ import androidx.ui.tooling.preview.Preview
 import de.jensklingenberg.composereact.*
 
 
-data class UserState(var name: String): RState
+data class MyState(var name: String): RState
 
-class FirstComponent : RComponent<RProps, UserState>() {
+class FirstComponent : RComponent<RProps, MyState>() {
 
-    override fun initState(): UserState =
-        UserState("Foo")
+    override fun initState(): MyState = MyState("Foo")
 
     override fun componentWillMount() {
         Log.d("Hello", "componentWillMount")
@@ -34,8 +33,8 @@ class FirstComponent : RComponent<RProps, UserState>() {
         Column {
             Text(text = "Hello React!  " + state.value.name)
             Button(onClick = {
-                setState {
-                    it.copy(name = "Bar")
+                setState {myState->
+                    myState.copy(name = "Bar")
                 }
             }) {
                 Text( state.value.name)
