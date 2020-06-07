@@ -96,6 +96,7 @@ Override the initState() and initialize your state
 ```
 
 ### Lifecycle
+You can override the following lifecycle methods:
 
 * componentWillMount()
 
