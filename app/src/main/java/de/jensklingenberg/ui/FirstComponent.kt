@@ -11,7 +11,6 @@ import de.jensklingenberg.composereact.*
 
 data class UserState(var name: String): RState
 
-
 class FirstComponent : RComponent<RProps, UserState>() {
 
     override fun initState(): UserState =

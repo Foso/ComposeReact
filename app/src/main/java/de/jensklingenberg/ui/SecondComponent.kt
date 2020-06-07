@@ -10,6 +10,8 @@ import de.jensklingenberg.composereact.RState
 
 class SecondComponent : RComponent<RProps, RState>() {
 
+
+
     override fun componentDidMount() {
         Log.d("MySecComp", "DidMount")
     }
