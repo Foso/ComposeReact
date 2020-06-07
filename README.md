@@ -94,3 +94,17 @@ Override the initState() and initialize your state
  override fun initState(props: MyProps): MyState { 
         return MyState(text = props.text) }
 ```
+
+### Lifecycle
+
+* componentWillMount()
+
+Will be called before the RComponent/Composable is drawn to screen.
+ 
+* componentDidMount()
+
+Will be called when the RComponent/Composable is drawn to screen.
+
+ 
+* componentWillUnmount()
+Will be called when the RComponent/Composable is going to be disposed
