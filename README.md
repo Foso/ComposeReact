@@ -5,8 +5,8 @@ This is just for fun project where i tried to figure out, how Jetpack Compose co
 
 Screenshots
 -----------
-[<img src="docs/screenshots/home/home_app_v0.1.png" width="200">](docs/codelef.png)
-[<img src="docs/screenshots/files/files_app_v0.1.png" width="200">](docs/coderight.png)
+[<img src="docs/codelef.png" width="200">](docs/codelef.png)
+[<img src="docs/coderight.png" width="200">](docs/coderight.png)
 
 ## Usage
 You need at least Compose 0.1.0-dev12
