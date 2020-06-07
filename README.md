@@ -75,3 +75,22 @@ setState {myState->
 myState.copy(name = "Bar")
 }
 ```
+
+### Define Props
+
+Create a data class that extends RProps
+
+```kotlin
+data class MyProps(var name: String): RProps
+```
+Add the class to your Component
+
+```kotlin
+class FirstComponent(props: MyProps) : RComponent<MyProps, MyState>() {
+```
+
+Override the initState() and initialize your state 
+```kotlin
+ override fun initState(props: MyProps): MyState { 
+        return MyState(text = props.text) }
+```
